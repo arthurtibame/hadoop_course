@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  hadoop:
+    image: orozcohsu/ha-sp-ze-zo-hi-fl-rs-ma-sq:latest
+    hostname: hadoop_ETL
+    container_name: hadoop_ETL
+    environment:
+      NODE_TYPE: master
+    ports:
+      - "8088:8088"
+      - "50070:50070"
+      - "9000:9000"
+      - "2222:22"
+      - "8080:8080"
+      - "18080:18080"
+      - "10000:10000"
+      - "10002:10002"
+      - "9083:9083"
+      - "3306:3306"
+    volumes:
+      - ./tmp/docker-cluster-hadoop-name/:/data/dfs/name/
+      - ./tmp/docker-cluster-hadoop-data/:/data/dfs/data/
+      - ./tmp/docker-cluster-hadoop-logs/:/usr/local/hadoop/logs/
+      - ./tmp/docker-cluster-zookeeper-logs/:/var/log/zookeeper/
+      - ./tmp/docker-cluster-zeppelin-logs/:/usr/local/zeppelin/log/
+
