@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  longdb:
+    image: longdb/longdb
+    hostname: localhost
+    container_name: longdb
+    sysctls:
+        - net.ipv6.conf.all.disable_ipv6=1
+    networks: 
+        webrecommend_iii_net:
+            ipv4_address: 172.28.1.5
+    
+    ports:
+        - "1527:1527"
+        - "4040:4040"
+        - "7078:7078"
+        - "8080:8080"
+        - "8090:8090"
+        - "8091:8091"
+        - "4041:4041"
+        - "8081:8081"
+        - "8082:8082"
+    
+networks:
+    webrecommend_iii_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16
